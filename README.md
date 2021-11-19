@@ -45,5 +45,12 @@ lakderena.local
 
 All set and now you can start your development!!!
 
+**NOTE:** emails can be tested using **mailtrap** email service
+
+go to https://mailtrap.io/ and login with lakderena gmail credentials
+
+username: lakdrenahotelchain@gmail.com <br>
+password: lakderena@123
+
 
 
