@@ -7,10 +7,10 @@
         private $password = "";
         private $database = "lakderena";
 
-        // public function __construct()
-        // {
-        //     session_start();
-        // }
+         public function __construct()
+         {
+             session_start();
+         }
 
         public function db()
         {
