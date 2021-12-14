@@ -1,3 +1,15 @@
+<?php
+    session_start();
+    if(!(isset($_SESSION['role_id'])) && !(isset($_SESSION['username']))){
+        header("location:../index.php");
+    }
+    if ($_SESSION['role_id'] != 5) {
+        header("location:../index.php");
+    }  
+
+    $user = $_SESSION['username'];
+
+?>
 <!DOCTYPE html>
 <html>
 
