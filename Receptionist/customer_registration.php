@@ -103,8 +103,8 @@
                   
                     <div class="col-lg-12">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-country">Mobile</label>
-                        <input name="mobile" type="number" id="input-postal-code" class="form-control" placeholder="Enter Number" required="" min="0">
+                        <label class="form-control-label">Mobile</label>
+                        <input name="mobile" type="text" id="phone" class="phone form-control" placeholder="077 123 4567" required="" >
                       </div>
                     </div>
                     <div class="col-lg-12">
@@ -189,6 +189,8 @@ $customer->registerCustomer($firstName, $lastName, $email, $address, $mobile);
       <!-- Sweet Alert -->
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+  <script type='text/javascript' src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+
 <!---------------------------Form Validation ---------------------------->
   <script>
    
@@ -214,10 +216,21 @@ function validateForm() {
   if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
     swal("Registration Failed!","Not a valid e-mail address.", "error");
    return false;
+
+  
   }
 }
 
   </script>
+
+
+<script>
+
+  $('input[name="mobile"]').mask('0000000000');
+</script>
+
+
+
 
   <!-- ---------------Notifications--------------------------- -->
   <?php 

@@ -27,14 +27,17 @@
                  
                 $stmt->close();
 
-                 $selectLastCustomer = $this->db->query("SELECT count('id') AS total, MAX(id) AS id, mobile FROM customers");
+                 $checkCustomers = $this->db->query("SELECT count('id') AS total FROM customers ");
 
-                   while($lastCustomer = $selectLastCustomer->fetch_assoc())
+                   while($allCustomers = $checkCustomers->fetch_assoc())
                     {
-                        if($lastCustomer['total'] >= 1)
+                        if($allCustomers['total'] >= 1)
                         {
-                            $cus_id= $lastCustomer['id'];
-                            $cus_mobile = $lastCustomer['mobile'];
+                             $getLastCustomer = $this->db->query("SELECT * FROM customers ORDER BY id DESC LIMIT 1");
+                             while($customerDetails = $getLastCustomer->fetch_assoc())
+                            {
+                            $cus_id= $customerDetails['id'];
+                            $cus_mobile = $customerDetails['mobile'];
 
                             // prepare and bind
                             $stmt2 = $this->db->prepare("INSERT INTO customer_mobile (customer_id, normalized_phone) VALUES (?, ?)");
@@ -53,6 +56,7 @@
                                     </script>';
 
                                }
+                           }
 
 
                         }
