@@ -1,18 +1,15 @@
-<!--
-=========================================================
-* Argon Dashboard - v1.2.0
-=========================================================
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
+<?php
+    session_start();
+    if(!(isset($_SESSION['role_id'])) && !(isset($_SESSION['username']))){
+        header("location:../index.php");
+    }
+    if ($_SESSION['role_id'] != 2) {
+        header("location:../index.php");
+    }  
 
+    $user = $_SESSION['username'];
 
-* Copyright  Creative Tim (http://www.creative-tim.com)
-* Coded by www.creative-tim.com
-
-
-
-=========================================================
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
+?>
 <!DOCTYPE html>
 <html>
 
