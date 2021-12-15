@@ -12,6 +12,11 @@
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
           <!-- Nav items -->
           <ul class="navbar-nav">
+               <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span class="nav-link-text">Hello <?php echo $user; ?> !</span>
+              </a>
+            </li>
             <li class="nav-item">
               <a class="nav-link active" href="/admin/">
                 <i class="fas fa-tachometer-alt text-primary"></i>
@@ -55,7 +60,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="logout.php">
                 <i class="ni ni-button-power text-dark"></i>
                 <span class="nav-link-text">Logout</span>
               </a>
