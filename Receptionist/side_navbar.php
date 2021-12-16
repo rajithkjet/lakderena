@@ -36,7 +36,7 @@
               </a>
             </li>
              <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="update_customers.php">
                 <i class="fas fa-user-edit text-orange"></i>
                 <span class="nav-link-text">Update Existing Customer</span>
               </a>
