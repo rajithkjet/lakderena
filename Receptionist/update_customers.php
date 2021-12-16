@@ -53,15 +53,86 @@
             </div>
             <div class="card-body">
               <div class="row icon-examples">
-             
-             <!-- Add  Content here  -->
+              <div class="col-xl-12 order-xl-1">
+              <div class="card">
+                <div class="card-header">
+                  <div class="row align-items-center">
+                  </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                  <table id="table_id" class="display table align-items-center">
+                  <thead class="thead-light">
+                      <tr>
+                          <th scope="col" class="sort">ID</th>
+                      
+                          <th scope="col" class="sort">First Name</th>
+                     
+                          <th scope="col" class="sort">Last Name</th>
 
-             <p>Add Content Here!</p>
+                          <th scope="col" class="sort">Email</th>
+                     
+                          <th scope="col" class="sort">Address</th>
+                     
+                          <th scope="col" class="sort">Mobile</th>
+                      
+                          <th scope="col" class="sort">Action</th>
+                      </tr>
+                  </thead>
+                  <tbody class="list">
+                    <?php
+                    require_once '../Database.php';
+                    $connect = new Database();
+                    $db = $connect->db();
+                    $sql = "SELECT * FROM customers";
+                    $result = mysqli_query($db, $sql);
+
+                    $customers = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                    ?>
+                     <?php foreach ($customers as $customer): ?>
+
+                     <?php
+
+                      $customerid = $customer['id'];
+                      $button = '<a href="edit_customer.php?id='.$customerid.'" type="button" class="btn btn-warning btn-sm"><i class="fas fa-user-edit"></i> UPDATE</a>';
+
+                     ?>
+                 
+                      <tr>
+                          <td><?php echo $customer['id']; ?></td>
+                      
+                          <td><?php echo $customer['first_name']; ?></td>
+                      
+                          <td><?php echo $customer['last_name']; ?></td>
+
+                          <td><?php echo $customer['email']; ?></td>
+                      
+                          <td><?php echo $customer['address']; ?></td>
+                      
+                          <td><?php echo $customer['mobile']; ?></td>
+                      
+                          <td><?php echo $button; ?></td>
+                      </tr>
+                      
+                      <?php endforeach;?>
+                  </tbody>
+              </table>
+              </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+       
               </div>
             </div>
           </div>
         </div>
       </div>
+      <script>
+              $(document).ready( function () {
+                          $('#table_id').DataTable();
+                      } );
+      </script>
       <!-- Footer -->
       <?php include "../dashboard_footer.php" ?>
     </div>
@@ -77,6 +148,10 @@
   <script src="../assets/vendor/clipboard/dist/clipboard.min.js"></script>
   <!-- Argon JS -->
   <script src="../assets/js/argon.js?v=1.2.0"></script>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
 </body>
 
 </html>
