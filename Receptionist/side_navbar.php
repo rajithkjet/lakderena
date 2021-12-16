@@ -30,6 +30,12 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="check_inquiries.php">
+                <i class="fas fa-file-alt text-brown"></i>
+                <span class="nav-link-text">Check Inquiries</span>
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="customer_registration.php">
                 <i class="fas fa-user-plus text-green"></i>
                 <span class="nav-link-text">Register New Customers</span>
