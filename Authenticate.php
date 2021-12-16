@@ -23,6 +23,7 @@
             {
                 if($current_user['total'] == 1 && $this->verifyPassword($password, $current_user['password']) == TRUE)
                 {
+                    session_start();
                     $_SESSION['id'] = $current_user['id'];
                     $_SESSION['username'] = $current_user['username'];
                     $_SESSION['role_id'] = $current_user['role_id'];
