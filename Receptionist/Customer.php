@@ -48,7 +48,7 @@
                                  $stmt2->close();
 
                                 echo'<script>
-                                location.replace("customer_registration.php?registration=success");
+                                location.replace("add_inquiry.php?customer='.$cus_id.'&registration=success");
                                 </script>';
                                }else{
                                     echo'<script>
