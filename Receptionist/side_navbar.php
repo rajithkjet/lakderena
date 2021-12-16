@@ -24,15 +24,15 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="customer_registration.php">
-                <i class="fas fa-user-plus text-green"></i>
-                <span class="nav-link-text">Register New Customers</span>
+              <a class="nav-link" href="inquiry.php">
+                <i class="fas fa-file-alt text-pink"></i>
+                <span class="nav-link-text">Add Inquiry</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="fas fa-file-alt text-pink"></i>
-                <span class="nav-link-text">Add Room Inquiry</span>
+              <a class="nav-link" href="customer_registration.php">
+                <i class="fas fa-user-plus text-green"></i>
+                <span class="nav-link-text">Register New Customers</span>
               </a>
             </li>
              <li class="nav-item">
@@ -41,15 +41,9 @@
                 <span class="nav-link-text">Update Existing Customer</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="fas fa-search text-blue"></i>
-                <span class="nav-link-text">Search Existing Customers</span>
-              </a>
-            </li>
              <li class="nav-item">
               <a class="nav-link" href="#">
-                <i class="fas fa-print text-green"></i>
+                <i class="fas fa-print text-blue"></i>
                 <span class="nav-link-text">Print Invoice</span>
               </a>
             </li>
