@@ -54,7 +54,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="settings.php">
                 <i class="ni ni-settings text-orange"></i>
                 <span class="nav-link-text">Account Settings</span>
               </a>
