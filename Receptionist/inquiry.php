@@ -59,6 +59,18 @@
                 <a href="customer_registration.php" style="color: white" type="button" class="btn btn-success"><i class="fas fa-user-plus"></i> Register New Customer</a>
               </div>
             </div>
+            <div class="col-xl-4 order-xl-1">
+                <div class="card">
+                  
+                <a href="update_customers.php" style="color: white" type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i> Update Customer</a>
+              </div>
+            </div>
+            <div class="col-xl-4 order-xl-1">
+                <div class="card">
+                  
+                <a href="check_inquiries.php" style="color: white" type="button" class="btn btn-primary"><i class="fas fa-file-alt"></i> Check Inquiries</a>
+              </div>
+            </div>
              <!--------------- search bar-------------- -->
            <div class="col-xl-12 order-xl-1">
           <div class="card">

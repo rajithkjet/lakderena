@@ -30,13 +30,19 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="check_inquiries.php">
+                <i class="fas fa-file-alt text-primary"></i>
+                <span class="nav-link-text">Check Inquiries</span>
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="customer_registration.php">
                 <i class="fas fa-user-plus text-green"></i>
                 <span class="nav-link-text">Register New Customers</span>
               </a>
             </li>
              <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="update_customers.php">
                 <i class="fas fa-user-edit text-orange"></i>
                 <span class="nav-link-text">Update Existing Customer</span>
               </a>
@@ -48,7 +54,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="settings.php">
                 <i class="ni ni-settings text-orange"></i>
                 <span class="nav-link-text">Account Settings</span>
               </a>
