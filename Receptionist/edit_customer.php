@@ -261,24 +261,24 @@ $customer->updateCustomer($firstName, $lastName, $email, $address, $mobile, $cus
 function validateForm() {
   let FirstName = document.forms["customerUpdateForm"]["fname"].value;
   if (FirstName == "") {
-    swal("Registration Failed!", "First Name Must be filled!", "error");
+    swal("Update Failed!", "First Name Must be filled!", "error");
     return false;
   }
   let LastName = document.forms["customerUpdateForm"]["lname"].value;
   if (LastName == "") {
-     swal("Registration Failed!", "Last Name Must be filled!", "error");
+     swal("Update Failed!", "Last Name Must be filled!", "error");
     return false;
   }
   var num =document.forms["customerUpdateForm"]["mobile"].value;
   if (num == null || num.length != "10") { 
-    swal("Registration Failed!", "Enter Correct number!", "error");
+    swal("Update Failed!", "Enter Correct number!", "error");
     return false;
   }
   var x = document.forms["customerUpdateForm"]["email"].value;//get form email value
   var atpos = x.indexOf("@");
   var dotpos = x.lastIndexOf(".");
   if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
-    swal("Registration Failed!","Not a valid e-mail address.", "error");
+    swal("Update Failed!","Not a valid e-mail address.", "error");
    return false;
 
   
