@@ -201,12 +201,13 @@ include 'Customer.php';
 //create new instance from Customer class
 $customer = new Customer(); 
 
+$cus_id = $_POST['id'];
 //check mail already exists
-if ($customer->customerEmailExists($_POST['email'])) {
+if ($customer->regCustomerEmailExists($_POST['email'], $cus_id)) {
   
   //if exists, then redirect to index page with notification value
   echo'<script>
-  location.replace("customer_registration.php?emailexists=true");
+  location.replace("edit_customer.php?id='.$cus_id.'&emailexists=true");
    </script>';
 
 }else{
@@ -239,7 +240,7 @@ $mobile = stripslashes($mobile);
 $mobile = addslashes($mobile);
 
 
-$customer->registerCustomer($firstName, $lastName, $email, $address, $mobile);
+$customer->updateCustomer($firstName, $lastName, $email, $address, $mobile, $cus_id);
 
   }
 
@@ -258,22 +259,22 @@ $customer->registerCustomer($firstName, $lastName, $email, $address, $mobile);
   <script>
    
 function validateForm() {
-  let FirstName = document.forms["customerRegForm"]["fname"].value;
+  let FirstName = document.forms["customerUpdateForm"]["fname"].value;
   if (FirstName == "") {
     swal("Registration Failed!", "First Name Must be filled!", "error");
     return false;
   }
-  let LastName = document.forms["customerRegForm"]["lname"].value;
+  let LastName = document.forms["customerUpdateForm"]["lname"].value;
   if (LastName == "") {
      swal("Registration Failed!", "Last Name Must be filled!", "error");
     return false;
   }
-  var num =document.forms["customerRegForm"]["mobile"].value;
+  var num =document.forms["customerUpdateForm"]["mobile"].value;
   if (num == null || num.length != "10") { 
     swal("Registration Failed!", "Enter Correct number!", "error");
     return false;
   }
-  var x = document.forms["customerRegForm"]["email"].value;//get form email value
+  var x = document.forms["customerUpdateForm"]["email"].value;//get form email value
   var atpos = x.indexOf("@");
   var dotpos = x.lastIndexOf(".");
   if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
@@ -298,24 +299,24 @@ function validateForm() {
   <!-- ---------------Notifications--------------------------- -->
   <?php 
 
-if(isset($_GET['registration']))
+if(isset($_GET['success']))
           {
             echo'<script>
-                 swal("Customer Registration Success!", "New Customer Details added!", "success");
+                 swal("Customer Updated Success!", "Customer Details Updated!", "success");
                 </script>';
              
           }
 if(isset($_GET['failed']))
           {
             echo'<script>
-                 swal("Customer Registration Failed!", "Something went wrong!", "error");
+                 swal("Customer Update Failed!", "Something went wrong!", "error");
                 </script>';
              
           }
 if(isset($_GET['emailexists']))
           {
             echo'<script>
-                 swal("Customer Registration Failed!", "Customer Email Already exists! Enter new email", "error");
+                 swal("Customer Update Failed!", "Customer Email Already exists! Enter new email", "error");
                 </script>';
              
           }
