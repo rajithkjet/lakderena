@@ -31,7 +31,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="check_inquiries.php">
-                <i class="fas fa-file-alt text-brown"></i>
+                <i class="fas fa-file-alt text-primary"></i>
                 <span class="nav-link-text">Check Inquiries</span>
               </a>
             </li>
