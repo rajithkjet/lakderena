@@ -129,10 +129,21 @@
                  
                 $stmt->close();
 
+                $stmt2 = $db->prepare("UPDATE customer_mobile SET normalized_phone = ? WHERE customer_id='".$cusid."'");
+                $stmt2->bind_param("s", $mobile);
+                if($stmt2->execute())
+                {
+                  $stmt2->close();
 
                   echo'<script>
                         location.replace("edit_customer.php?id='.$cusid.'&success=true");
                        </script>';
+                }else{
+
+                    echo'<script>
+                        location.replace("edit_customer.php?id='.$cusid.'&failed=true");
+                        </script>';
+                }
 
              }else{
                     echo'<script>
