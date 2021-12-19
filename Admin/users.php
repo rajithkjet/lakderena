@@ -65,6 +65,7 @@
                                                     <th scope="col" class="sort">Email</th>
                                                     <th scope="col" class="sort">Username</th>
                                                     <th scope="col" class="sort">Hotel No.</th>
+                                                    <th scope="col" class="sort">Active</th>
                                                     <th scope="col" class="sort">Action</th>
                                                 </tr>
                                             </thead>
@@ -89,6 +90,7 @@
                                                     <td><?php echo $user['email']; ?></td>
                                                     <td><?php echo $user['username']; ?></td>
                                                     <td><?php echo $user['hotel_no']; ?></td>
+                                                    <td><?php echo ($user['is_active'] == 1 ? '<span style="background-color:green; color:white; padding: 5px;">Yes</span>' : '<span style="background-color:red; color:white; padding: 5px;">No</span>'); ?></td>
                                                     <td><?php echo $button; ?></td>
                                                 </tr>
                                                 <?php endforeach;?>
