@@ -24,21 +24,27 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="users.php">
                 <i class="fas fa-user-plus text-green"></i>
-                <span class="nav-link-text">Add Users</span>
+                <span class="nav-link-text">Users</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
                 <i class="ni ni-badge text-pink"></i>
-                <span class="nav-link-text">Add User Roles</span>
+                <span class="nav-link-text">Roles</span>
               </a>
             </li>
              <li class="nav-item">
               <a class="nav-link" href="#">
-                <i class="fas fa-users text-orange"></i>
-                <span class="nav-link-text">Manage Users</span>
+                <i class="fas fa-hotel text-orange"></i>
+                <span class="nav-link-text">Hotels</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <i class="fas fa-warehouse text-primary"></i>
+                <span class="nav-link-text">Rooms</span>
               </a>
             </li>
             <li class="nav-item">

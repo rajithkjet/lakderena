@@ -17,10 +17,15 @@
         public function login($email, $password)
         {
             
-            $query = $this->db->query("SELECT count('id') AS total, users.id, users.username, users.email, users.password, role_users.role_id FROM users INNER JOIN role_users ON users.id = role_users.user_id WHERE (username = '$email' OR email = '$email') LIMIT 1");
+            $query = $this->db->query("SELECT count('id') AS total, users.id, users.username, users.email, users.password, role_users.role_id, users.is_active FROM users INNER JOIN role_users ON users.id = role_users.user_id WHERE (username = '$email' OR email = '$email') LIMIT 1");
 
             while($current_user = $query->fetch_assoc())
             {
+                if($current_user['is_active'] == 0){
+                    echo '<p class="d-flex justify-content-center links" style="color:red; text-align:center;">Your account is inactivated. Please contact Admin.</p>';
+                    die;
+                }
+                
                 if($current_user['total'] == 1 && $this->verifyPassword($password, $current_user['password']) == TRUE)
                 {
                     session_start();
