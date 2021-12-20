@@ -66,8 +66,6 @@
                           <th scope="col" class="sort">ID</th>
                       
                           <th scope="col" class="sort">Customer ID</th>
-                     
-                          <th scope="col" class="sort">Room Type ID</th>
 
                           <th scope="col" class="sort">Room Type</th>
                      
@@ -154,8 +152,6 @@
                           <td><?php echo $inquiry['id']; ?></td>
                       
                           <td><?php echo $inquiry['customer_id']; ?></td>
-                      
-                          <td><?php echo $inquiry['room_type_id']; ?></td>
 
                           <td><?php echo $roomType; ?></td>
                       

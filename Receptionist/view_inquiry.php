@@ -144,6 +144,25 @@
             </div>
             <div class="card-body">
               <form name="addInquiryForm" action="" method="post"">
+              <!-- Inquiry Details -->
+                <h6 class="heading-small text-muted mb-4">Inquiry</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-md-12">
+
+                    <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">Inquiry ID</label>
+                        <input name="fname" type="text" id="input-first-name" class="form-control" value="'.$inquiryid.'" readonly>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">Recipient ID</label>
+                        <input name="fname" type="text" id="input-first-name" class="form-control" value="'.$recipient_id.'" readonly>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr class="my-4" />
                 <h6 class="heading-small text-muted mb-4">Customer Information</h6>
                 <div class="pl-lg-4">
                   <div class="row">
