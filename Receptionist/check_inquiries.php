@@ -86,6 +86,8 @@
                           <th scope="col" class="sort">Children</th>
 
                           <th scope="col" class="sort">Action</th>
+
+                          <th scope="col" class="sort">Action</th>
                       </tr>
                   </thead>
                   <tbody class="list">
@@ -130,6 +132,8 @@
                       }else{
                         $ac_type = '<i style="color:red" class="fas fa-times"></i>';
                       }
+
+                      $viewButton = '<a href="view_inquiry.php?inquiry='.$inquiry['id'].'" type="button" class="btn btn-success btn-sm"><i class="fas fa-file"></i> SHOW MORE INFO</a>';
                       ?>
 
                       <?php
@@ -169,6 +173,7 @@
 
                           <td><?php echo $inquiry['children']; ?></td>
 
+                          <td><?php echo $viewButton; ?></td>
                           <td><?php echo $button; ?></td>
                       </tr>
                       <?php endforeach;?>
