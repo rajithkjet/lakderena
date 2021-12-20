@@ -41,6 +41,37 @@
             }
         }
 
+       //update Inquiry function
+        public function updateInquiry($inquiry_id, $room_type_id, $is_ac, $status, $receptionist_id, $checkin, $checkout, $adults, $children)
+        {
+
+            
+             $conn = new Database();
+             $db = $conn->db();
+            // prepare and bind
+
+            $stmt = $db->prepare("UPDATE inquiry SET room_type_id = ?, is_ac = ?, status = ?, recipient_id = ?, check_in = ?, check_out = ?, adults = ?, children = ? WHERE id='".$inquiry_id."'");
+            $stmt->bind_param("ssssssss", $room_type_id, $is_ac, $status, $receptionist_id, $checkin, $checkout, $adults, $children);
+            
+            if($stmt->execute())
+            {
+                 
+                $stmt->close();
+                echo'<script>
+                location.replace("edit_inquiry.php?success=true");
+                 </script>';
+
+                
+            }
+
+            else
+            {
+                echo'<script>
+                location.replace("edit_inquiry.php?failed=true");
+                 </script>';
+            }
+        }
+
 
         //account update function
         public function updateAccount($firstName, $lastName, $email, $username, $password, $userid)

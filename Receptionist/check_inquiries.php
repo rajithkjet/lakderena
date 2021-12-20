@@ -76,6 +76,16 @@
                           <th scope="col" class="sort">Status</th>
                       
                           <th scope="col" class="sort">Recipient ID</th>
+
+                          <th scope="col" class="sort">Check In</th>
+
+                          <th scope="col" class="sort">Check Out</th>
+
+                          <th scope="col" class="sort">Adults</th>
+
+                          <th scope="col" class="sort">Children</th>
+
+                          <th scope="col" class="sort">Action</th>
                       </tr>
                   </thead>
                   <tbody class="list">
@@ -92,21 +102,27 @@
 
                       <?php
 
+                      $button = ''; 
+
                       if ($inquiry['status'] == 0) {
                         $in_status ='<span class="badge badge-dot mr-4">
                       <i class="bg-danger"></i>
                       <span class="status">Pending</span>
                     </span>';
+                      $button = '<a href="edit_inquiry.php?inquiry='.$inquiry['id'].'" type="button" class="btn btn-warning btn-sm"><i class="fas fa-user-edit"></i> UPDATE</a>'; 
+
                       }elseif ($inquiry['status'] == 1) {
                         $in_status ='<span class="badge badge-dot mr-4">
                       <i class="bg-primary"></i>
                       <span class="status">Transferred</span>
                     </span>';
+                      $button = ''; 
                       }else{
                          $in_status ='<span class="badge badge-dot mr-4">
                       <i class="bg-success"></i>
                       <span class="status">Completed</span>
                     </span>';
+                      $button = ''; 
                       }
 
                       if ($inquiry['is_ac'] == 1) {
@@ -123,7 +139,11 @@
                         $rooms = mysqli_fetch_all($result2, MYSQLI_ASSOC);
                         foreach ($rooms as $room):
 
-                        $roomType = $room['name']; 
+                        $roomType = $room['name'];
+
+
+
+                        
 
                       ?>
                       <tr>
@@ -140,6 +160,16 @@
                           <td><?php echo $in_status; ?></td>
                       
                           <td><?php echo $inquiry['recipient_id']; ?></td>
+
+                          <td><?php echo $inquiry['check_in']; ?></td>
+
+                          <td><?php echo $inquiry['check_out']; ?></td>
+
+                          <td><?php echo $inquiry['adults']; ?></td>
+
+                          <td><?php echo $inquiry['children']; ?></td>
+
+                          <td><?php echo $button; ?></td>
                       </tr>
                       <?php endforeach;?>
                       <?php endforeach;?>
