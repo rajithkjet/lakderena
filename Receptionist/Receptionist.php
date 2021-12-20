@@ -11,13 +11,16 @@
         
 
       //add Inquiry function
-        public function addInquiry($customer_id, $room_type_id, $is_ac, $status, $receptionist_id)
+        public function addInquiry($customer_id, $room_type_id, $is_ac, $status, $receptionist_id, $checkin, $checkout, $adults, $children)
         {
+
+             $current_date = new DateTime(null, new DateTimeZone('Asia/Colombo'));
+             $current_date = $current_date->format("Y-m-d H:i:s");
              $conn = new Database();
              $db = $conn->db();
             // prepare and bind
-            $stmt = $db->prepare("INSERT INTO inquiry (customer_id, room_type_id, is_ac, status, recipient_id) VALUES (?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssss", $customer_id, $room_type_id, $is_ac, $status, $receptionist_id);
+            $stmt = $db->prepare("INSERT INTO inquiry (customer_id, room_type_id, is_ac, status, recipient_id, check_in, check_out, adults, children, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssssssss", $customer_id, $room_type_id, $is_ac, $status, $receptionist_id, $checkin, $checkout, $adults, $children, $current_date);
             
             if($stmt->execute())
             {

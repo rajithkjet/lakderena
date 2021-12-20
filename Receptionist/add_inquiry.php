@@ -74,8 +74,13 @@
                         $result = mysqli_query($db, $query);
                         if(mysqli_num_rows($result) > 0)
                         {
-                    
+                          //create current date
+                          $c_date = new DateTime(null, new DateTimeZone('Asia/Colombo'));
+                          $c_date = $c_date->format("Y-m-d");
 
+                          //create current time
+                          $c_time = new DateTime(null, new DateTimeZone('Asia/Colombo'));
+                          $c_time = $c_time->format("H:i");
                         while($row = mysqli_fetch_array($result)){
 
                               $id = $row['id'];
@@ -173,11 +178,28 @@
                       </div>
                     </div>
                   </div>
+                  <div class="row">
+                  
+                  <div class="col-lg-12">
 
+                  <div class="form-group">
+                  <label for="adults" class="form-control-label">Enter Total Adults</label>
+                  <input name="adults" class="form-control" type="text" id="adults" min="0">
+                  </div>
+
+                   
+                  <div class="form-group">
+                    <label for="children" class="form-control-label">Enter Total Children</label>
+                    <input name="children" class="form-control" type="text" id="children" min="0">
+                  </div>
+
+                  </div>
+                </div>
 
                   <div class="row">
                   
                     <div class="col-lg-12">
+
                       <div class="form-group">
                         <label class="form-control-label">AC ?</label>
                         
@@ -186,9 +208,18 @@
                             <input name="ac_type" type="checkbox" checked>
                             <span class="custom-toggle-slider rounded-circle" data-label-off="No" data-label-on="Yes"></span>
                         </label>
-
-
                       </div>
+
+                      <div class="form-group">
+                      <label for="example-datetime-local-input" class="form-control-label">Check In</label>
+                      <input name="checkin" class="form-control" type="datetime-local" value="'.$c_date.'T'.$c_time.':00" id="example-datetime-local-input">
+                      </div>
+
+                       <div class="form-group">
+                      <label for="example-datetime-local-input" class="form-control-label">Check Out</label>
+                      <input name="checkout" class="form-control" type="datetime-local" value="'.$c_date.'T'.$c_time.':00" id="example-datetime-local-input">
+                      </div>
+
                     </div>
                     <div class="col-lg-12">
                      <button type="submit" name="submit" class="btn btn-warning">Submit</button>
@@ -249,7 +280,19 @@ $receptionist = new Receptionist();
 
 
 
-$customer_id = $_POST['id'];
+$customer_id = $customerid;
+$adults = $_POST['adults'];
+$children = $_POST['children'];
+$checkin = $_POST['checkin'];
+$checkout = $_POST['checkout'];
+
+if ($adults == "") {
+  $adults = 0;
+}
+
+if ($children == "") {
+  $children = 0;
+}
 
 $rm_type = filter_input(INPUT_POST, 'room_types', FILTER_SANITIZE_STRING);
 $room_type_id = $rm_type;
@@ -267,7 +310,7 @@ $receptionist_id = $_SESSION['id'];
 
 
 
-$receptionist->addInquiry($customer_id, $room_type_id, $ac_value, $status, $receptionist_id);
+$receptionist->addInquiry($customer_id, $room_type_id, $ac_value, $status, $receptionist_id, $checkin, $checkout, $adults, $children);
 
 
 
@@ -275,7 +318,15 @@ $receptionist->addInquiry($customer_id, $room_type_id, $ac_value, $status, $rece
 
 ?>
 
-<!--------------------- Registration process end ------------------------>
+<!--------------------- add inquiry process end ------------------------>
+
+
+
+<script>
+
+  $('input[name="adults"]').mask('0000000000');
+  $('input[name="children"]').mask('0000000000');
+</script>
 
       <!-- Sweet Alert -->
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
