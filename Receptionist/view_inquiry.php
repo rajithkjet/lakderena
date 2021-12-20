@@ -35,7 +35,7 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Add Inquiry</li>
+                  <li class="breadcrumb-item active" aria-current="page">View Inquiry</li>
                 </ol>
               </nav>
             </div>
@@ -49,26 +49,26 @@
         <div class=" col ">
           <div class="card">
             <div class="card-header bg-transparent">
-              <h3 class="mb-0">Add Inquiry</h3>
+              <h3 class="mb-0">View Inquiry</h3>
             </div>
             <div class="card-body">
               <div class="row icon-examples">
                 <?php 
-                if (isset($_GET['customer'])){
+                if (isset($_GET['inquiry'])){
                   
-                   $customerid = $_GET['customer'];
+                   $inquiryid = $_GET['inquiry'];
 
-                    if ( is_numeric($customerid) == true){
+                    if ( is_numeric($inquiryid) == true){
                        require_once '../Database.php';
                     try{
 
                        $connect = new Database();
                        $db = $connect->db();
                        
-                        $customerid = mysqli_real_escape_string($db, $_GET['customer']);
+                        $inquiryid = mysqli_real_escape_string($db, $_GET['inquiry']);
                         $query = "
-                        SELECT * FROM customers 
-                        WHERE id = '".$customerid."'
+                        SELECT * FROM inquiry 
+                        WHERE id = '".$inquiryid."'
                         ";
 
                         $result = mysqli_query($db, $query);
@@ -84,36 +84,114 @@
                         while($row = mysqli_fetch_array($result)){
 
                               $id = $row['id'];
-                              $firstname=$row['first_name'];
-                              $lastname=$row['last_name'];
-                              $email=$row['email'];
-                              $address = $row['address'];
-                              $mobile = $row['mobile'];
+                              $customer_id=$row['customer_id'];
+                              $room_type_id=$row['room_type_id'];
+                              $is_ac=$row['is_ac'];
+                              $status = $row['status'];
+                              $recipient_id = $row['recipient_id'];
+                              $check_in = $row['check_in'];
+                              $check_out = $row['check_out'];
+                              $adults = $row['adults'];
+                              $children = $row['children'];
 
 
+                              if ($is_ac == 1) {
+                                $ac = "1";
+                              }else{
+                                $ac = "0";
+                              }
 
-      echo'     <div class="col-xl-8 order-xl-1">
+                              $check_in_date = new DateTime($check_in, new DateTimeZone('Asia/Colombo'));
+                              $check_in_date = $check_in_date->format("Y-m-d");
+                              $check_in_time = new DateTime($check_in, new DateTimeZone('Asia/Colombo'));
+                              $check_in_time = $check_in_time->format("H:i");
+
+                              $check_out_date = new DateTime($check_out, new DateTimeZone('Asia/Colombo'));
+                              $check_out_date = $check_out_date->format("Y-m-d");
+                              $check_out_time = new DateTime($check_out, new DateTimeZone('Asia/Colombo'));
+                              $check_out_time = $check_out_time->format("H:i");
+                         
+
+                                $query2 = "
+                        SELECT * FROM customers 
+                        WHERE id = '".$customer_id."'
+                        ";
+                           $result2 = mysqli_query($db, $query2);
+                      
+
+
+                        
+                          if(mysqli_num_rows($result2) > 0)
+                          {
+                            
+                          while($row2 = mysqli_fetch_array($result2)){
+
+                                $id = $row2['id'];
+                                $firstname=$row2['first_name'];
+                                $lastname=$row2['last_name'];
+                                $email=$row2['email'];
+                                $address = $row2['address'];
+                                $mobile = $row2['mobile'];
+
+                              }
+                          
+
+
+      echo'     <div class="col-xl-12 order-xl-1">
           <div class="card">
             <div class="card-header">
               <div class="row align-items-center">
             </div>
             <div class="card-body">
               <form name="addInquiryForm" action="" method="post"">
+              <!-- Inquiry Details -->
+                <h6 class="heading-small text-muted mb-4">Inquiry</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-md-6">
+
+                    <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">Inquiry ID</label>
+                        <input name="fname" type="text" id="input-first-name" class="form-control" value="'.$inquiryid.'" readonly>
+                      </div>
+
+                    </div>
+                 
+                    <div class="col-md-6">
+
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">Recipient ID</label>
+                        <input name="fname" type="text" id="input-first-name" class="form-control" value="'.$recipient_id.'" readonly>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+
+                <hr class="my-4" />
                 <h6 class="heading-small text-muted mb-4">Customer Information</h6>
                 <div class="pl-lg-4">
                   <div class="row">
+
                       <div class="col-lg-6">
+
                       <div class="form-group">
                         <label class="form-control-label">Customer ID</label>
                         <input name="id" type="text" class="form-control" value="'.$id.'" readonly>
                       </div>
+
                     </div>
+
                     <div class="col-lg-6">
+
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Email address</label>
                         <input name="email" type="email" id="input-email" class="form-control" value="'.$email.'" readonly>
                       </div>
+
                     </div>
+
                   </div>
                   <div class="row">
                     <div class="col-lg-6">
@@ -156,76 +234,105 @@
                 </div>
                    <hr class="my-4" />
                 <!-- Room Details -->
-                <h6 class="heading-small text-muted mb-4">Enter Room Information</h6>
+                <h6 class="heading-small text-muted mb-4">Room Information</h6>
                 <div class="pl-lg-4">
                   <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
+                    <div class="col-md-6">
 
-                        <label class="form-control-label" for="input-address">Select Room Type</label>
-
-                        <select name="room_types" class="form-control">';?>
-                        <!--select room type -->
-                      <?php
-                      $list = mysqli_query($db,"SELECT * FROM `room_types`");
-                      while ($row = mysqli_fetch_assoc($list)) {
-                      
-                     echo' <option value="'.$row['id'].'">'.$row['name'].'</option>';
-                       } ?>
-                        
-              <?php echo'
-                        </select>
+                     
+                        <!--room type -->
+                    <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">Room Type ID</label>
+                        <input name="roomtypeid" type="text" id="input-first-name" class="form-control" value="'.$room_type_id.'" readonly>
                       </div>
+                      </div>';
+                  ?>
+                  <?php
+
+                      $list = mysqli_query($db,"SELECT * FROM `room_types` WHERE id =".$room_type_id." ");
+                      while ($row = mysqli_fetch_assoc($list)) {
+                      $roomname = $row['name'];
+                       } ?>
+<?php
+                echo'  <div class="col-md-6"> 
+
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">Room Type</label>
+                        <input name="roomname" type="text" id="input-first-name" class="form-control" value="'.$roomname.'" readonly>
+                      </div>
+                      
                     </div>
                   </div>
+
                   <div class="row">
                   
-                  <div class="col-lg-12">
+                  <div class="col-md-6">
 
                   <div class="form-group">
-                  <label for="adults" class="form-control-label">Enter Total Adults</label>
-                  <input name="adults" class="form-control" type="text" id="adults" min="0">
+                  <label for="adults" class="form-control-label">Total Adults</label>
+                  <input name="adults" value="'.$adults.'" class="form-control" type="text" id="adults" min="0" readonly>
                   </div>
 
-                   
+                  </div>
+
+                  <div class="col-md-6">
+
                   <div class="form-group">
-                    <label for="children" class="form-control-label">Enter Total Children</label>
-                    <input name="children" class="form-control" type="text" id="children" min="0">
+                    <label for="children" class="form-control-label">Total Children</label>
+                    <input name="children" value="'.$children.'" class="form-control" type="text" id="children" min="0" readonly>
                   </div>
 
                   </div>
+
                 </div>
 
                   <div class="row">
                   
-                    <div class="col-lg-12">
+                    <div class="col-md-6">
 
-                      <div class="form-group">
-                        <label class="form-control-label">AC ?</label>
-                        
-                        <br/>
-                        <label class="custom-toggle">
-                            <input name="ac_type" type="checkbox" checked>
-                            <span class="custom-toggle-slider rounded-circle" data-label-off="No" data-label-on="Yes"></span>
-                        </label>
+                      '; ?>
+                        <?php 
+                        if ($is_ac == 1) {
+                          echo ' <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">AC</label>
+                        <input name="ac" type="text"  class="form-control" value="YES" readonly>
+                      </div>';
+                        }else{
+                          echo ' <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">AC</label>
+                        <input name="ac" type="text" class="form-control" value="NO" readonly>
+                      </div>';
+                        }
+                          echo'
+                           
                       </div>
+                      </div>
+                    <div class="row">
+                  
+                    <div class="col-md-6">
 
                       <div class="form-group">
                       <label for="example-datetime-local-input" class="form-control-label">Check In</label>
-                      <input name="checkin" class="form-control" type="datetime-local" value="'.$c_date.'T'.$c_time.':00" id="example-datetime-local-input">
+                      <input name="checkin" class="form-control" type="datetime-local" value="'.$check_in_date.'T'.$check_in_time.':00" id="example-datetime-local-input" readonly>
                       </div>
+                    </div>
 
+                    <div class="col-md-6">
                        <div class="form-group">
                       <label for="example-datetime-local-input" class="form-control-label">Check Out</label>
-                      <input name="checkout" class="form-control" type="datetime-local" value="'.$c_date.'T'.$c_time.':00" id="example-datetime-local-input">
+                      <input name="checkout" class="form-control" type="datetime-local" value="'.$check_out_date.'T'.$check_out_time.':00" id="example-datetime-local-input" readonly>
                       </div>
+                    </div>
 
                     </div>
                     <div class="col-lg-12">
-                     <button type="submit" name="submit" class="btn btn-warning">Submit</button>
+                     <a href="check_inquiries.php" type="submit" name="submit" class="btn btn-warning">Back to Inquiries</a>
                    </div>
 
-                  </div>
+                   </div>
+
+
+                 
                 </div>
               </form>
             </div>
@@ -234,11 +341,14 @@
               </div>' ;
 $db = null;
                      }
+
+
+                   }
+
                   }else{
 
-                              echo '<center>Sorry No Customer Found!!</center>';
+                              echo '<center>Sorry No Inquiry Found!!</center>';
                           }
-
                            //Close the connection to the database.
                               $db = null;
                  }
@@ -268,94 +378,7 @@ $db = null;
         </div>
       </div>
 
-      <!---------------------------- Registration process ------------------------------>
 
-<?php
-
-if (isset($_POST['submit'])){
-include 'Receptionist.php';
-
-//create new instance from Receptionist class
-$receptionist = new Receptionist(); 
-
-
-
-$customer_id = $customerid;
-$adults = $_POST['adults'];
-$children = $_POST['children'];
-$checkin = $_POST['checkin'];
-$checkout = $_POST['checkout'];
-
-if ($adults == "") {
-  $adults = 0;
-}
-
-if ($children == "") {
-  $children = 0;
-}
-
-$rm_type = filter_input(INPUT_POST, 'room_types', FILTER_SANITIZE_STRING);
-$room_type_id = $rm_type;
-
-$is_ac = $_POST['ac_type'];
-
-if ($is_ac == "on") {
-  $ac_value = 1;
-}else {
-  $ac_value = 0;
-}
-
-$status = 0;
-$receptionist_id = $_SESSION['id'];
-
-
-
-$receptionist->addInquiry($customer_id, $room_type_id, $ac_value, $status, $receptionist_id, $checkin, $checkout, $adults, $children);
-
-
-
-}
-
-?>
-
-<!--------------------- add inquiry process end ------------------------>
-
-
-
-<script>
-
-  $('input[name="adults"]').mask('0000000000');
-  $('input[name="children"]').mask('0000000000');
-</script>
-
-      <!-- Sweet Alert -->
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <!-- ---------------Notifications--------------------------- -->
-  <?php 
-
-if(isset($_GET['registration']))
-          {
-            echo'<script>
-                 swal("Customer Registration Success!", "New Customer Details added!", "success");
-                </script>';
-             
-          }
-if(isset($_GET['failed']))
-          {
-            echo'<script>
-                 swal("Inquiry Adding Failed!", "Something went wrong!", "error");
-                </script>';
-             
-          }
-if(isset($_GET['success']))
-          {
-            echo'<script>
-                 swal("Success!", "Inquiry Added Successfully!", "success");
-                </script>';
-             
-          }
-
- ?>
       <!-- Footer -->
       <?php include "../dashboard_footer.php" ?>
     </div>
