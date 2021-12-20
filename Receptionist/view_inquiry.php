@@ -325,15 +325,18 @@
                     </div>
 
                     </div>
-                    <div class="col-lg-12">
-                     <a href="check_inquiries.php" type="submit" name="submit" class="btn btn-warning">Back to Inquiries</a>
-                   </div>
+                    
+                      <div class="row">
+                          <div class="col-md-6">
+                               <div class="form-group">
+                               <a href="check_inquiries.php" type="submit" name="submit" class="btn btn-warning">Back to Inquiries</a>
+                              </div>
+                         </div>
 
-                   </div>
-
-
+                     </div>
                  
-                </div>
+                  </div>
+
               </form>
             </div>
           </div>
