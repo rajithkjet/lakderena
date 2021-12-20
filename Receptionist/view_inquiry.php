@@ -137,7 +137,7 @@
                           
 
 
-      echo'     <div class="col-xl-8 order-xl-1">
+      echo'     <div class="col-xl-12 order-xl-1">
           <div class="card">
             <div class="card-header">
               <div class="row align-items-center">
@@ -148,36 +148,50 @@
                 <h6 class="heading-small text-muted mb-4">Inquiry</h6>
                 <div class="pl-lg-4">
                   <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
 
                     <div class="form-group">
                         <label class="form-control-label" for="input-first-name">Inquiry ID</label>
                         <input name="fname" type="text" id="input-first-name" class="form-control" value="'.$inquiryid.'" readonly>
                       </div>
 
+                    </div>
+                 
+                    <div class="col-md-6">
+
                       <div class="form-group">
                         <label class="form-control-label" for="input-first-name">Recipient ID</label>
                         <input name="fname" type="text" id="input-first-name" class="form-control" value="'.$recipient_id.'" readonly>
                       </div>
+
                     </div>
+
                   </div>
                 </div>
+
                 <hr class="my-4" />
                 <h6 class="heading-small text-muted mb-4">Customer Information</h6>
                 <div class="pl-lg-4">
                   <div class="row">
+
                       <div class="col-lg-6">
+
                       <div class="form-group">
                         <label class="form-control-label">Customer ID</label>
                         <input name="id" type="text" class="form-control" value="'.$id.'" readonly>
                       </div>
+
                     </div>
+
                     <div class="col-lg-6">
+
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Email address</label>
                         <input name="email" type="email" id="input-email" class="form-control" value="'.$email.'" readonly>
                       </div>
+
                     </div>
+
                   </div>
                   <div class="row">
                     <div class="col-lg-6">
@@ -223,13 +237,14 @@
                 <h6 class="heading-small text-muted mb-4">Room Information</h6>
                 <div class="pl-lg-4">
                   <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
 
                      
                         <!--room type -->
                     <div class="form-group">
-                        <label class="form-control-label" for="input-first-name">Room ID</label>
-                        <input name="fname" type="text" id="input-first-name" class="form-control" value="'.$room_type_id.'" readonly>
+                        <label class="form-control-label" for="input-first-name">Room Type ID</label>
+                        <input name="roomtypeid" type="text" id="input-first-name" class="form-control" value="'.$room_type_id.'" readonly>
+                      </div>
                       </div>';
                   ?>
                   <?php
@@ -239,64 +254,75 @@
                       $roomname = $row['name'];
                        } ?>
 <?php
-                echo'    <div class="form-group">
+                echo'  <div class="col-md-6"> 
+
+                      <div class="form-group">
                         <label class="form-control-label" for="input-first-name">Room Type</label>
-                        <input name="fname" type="text" id="input-first-name" class="form-control" value="'.$roomname.'" readonly>
+                        <input name="roomname" type="text" id="input-first-name" class="form-control" value="'.$roomname.'" readonly>
                       </div>
                       
                     </div>
                   </div>
+
                   <div class="row">
                   
-                  <div class="col-lg-12">
+                  <div class="col-md-6">
 
                   <div class="form-group">
                   <label for="adults" class="form-control-label">Total Adults</label>
                   <input name="adults" value="'.$adults.'" class="form-control" type="text" id="adults" min="0" readonly>
                   </div>
 
-                   
+                  </div>
+
+                  <div class="col-md-6">
+
                   <div class="form-group">
                     <label for="children" class="form-control-label">Total Children</label>
                     <input name="children" value="'.$children.'" class="form-control" type="text" id="children" min="0" readonly>
                   </div>
 
                   </div>
+
                 </div>
 
                   <div class="row">
                   
-                    <div class="col-lg-12">
+                    <div class="col-md-6">
 
                       '; ?>
                         <?php 
                         if ($is_ac == 1) {
                           echo ' <div class="form-group">
                         <label class="form-control-label" for="input-first-name">AC</label>
-                        <input name="fname" type="text" id="input-first-name" class="form-control" value="YES" readonly>
+                        <input name="ac" type="text"  class="form-control" value="YES" readonly>
                       </div>';
                         }else{
                           echo ' <div class="form-group">
-                        <label class="form-control-label" for="input-first-name">Room ID</label>
-                        <input name="fname" type="text" id="input-first-name" class="form-control" value="NO" readonly>
+                        <label class="form-control-label" for="input-first-name">AC</label>
+                        <input name="ac" type="text" class="form-control" value="NO" readonly>
                       </div>';
                         }
                           echo'
                            
                       </div>
                       </div>
-                        <div class="row">
+                    <div class="row">
                   
-                    <div class="col-lg-12">
+                    <div class="col-md-6">
+
                       <div class="form-group">
                       <label for="example-datetime-local-input" class="form-control-label">Check In</label>
                       <input name="checkin" class="form-control" type="datetime-local" value="'.$check_in_date.'T'.$check_in_time.':00" id="example-datetime-local-input" readonly>
                       </div>
+                    </div>
 
+                    <div class="col-md-6">
                        <div class="form-group">
                       <label for="example-datetime-local-input" class="form-control-label">Check Out</label>
                       <input name="checkout" class="form-control" type="datetime-local" value="'.$check_out_date.'T'.$check_out_time.':00" id="example-datetime-local-input" readonly>
                       </div>
+                    </div>
 
                     </div>
                     <div class="col-lg-12">
@@ -306,7 +332,7 @@
                    </div>
 
 
-                  </div>
+                 
                 </div>
               </form>
             </div>
