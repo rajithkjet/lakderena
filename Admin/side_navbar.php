@@ -30,7 +30,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="roles.php">
                 <i class="ni ni-badge text-pink"></i>
                 <span class="nav-link-text">Roles</span>
               </a>
