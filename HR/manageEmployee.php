@@ -58,6 +58,83 @@
                         <a href="addEmployee.php" style="color: white" type="button" class="btn btn-success"><i class="fas fa-user-plus"></i> Add New Employee</a>
                     </div>
                 </div>
+                <div class="col-xl-12 order-xl-1">
+                    <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="table_id" class="display table align-items-center">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col" class="sort">ID</th>
+                                        
+                                            <th scope="col" class="sort">First Name</th>
+
+                                            <th scope="col" class="sort">Last Name</th>
+                                        
+                                            <th scope="col" class="sort">Email</th>
+                                        
+                                            <th scope="col" class="sort">Address</th>
+                                        
+                                            <th scope="col" class="sort">Mobile</th>
+
+                                            <th scope="col" class="sort">Hotel Code</th>
+
+                                            <th scope="col" class="sort">Job Role</th>
+
+                                            <th scope="col" class="sort">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="list">
+                                        <?php
+                                        require_once '../Database.php';
+                                        $connect = new Database();
+                                        $db = $connect->db();
+                                        $sql = "SELECT * FROM employees";
+                                        $result = mysqli_query($db, $sql);
+
+                                        $employees = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                                        ?>
+                                        <?php foreach ($employees as $employee): ?>
+
+
+                                        <?php
+                                            $sql2 = "SELECT * FROM job_roles WHERE id = '".$employee['job_role_id']."'";
+                                            $result2 = mysqli_query($db, $sql2);
+
+                                            $jobs = mysqli_fetch_all($result2, MYSQLI_ASSOC);
+                                            foreach ($jobs as $job):
+
+                                            $jobType = $job['name'];
+
+                                            $button = '<a href="editEmployee.php?id='.$employee['id'].'" type="button" class="btn btn-warning btn-sm"><i class="fas fa-user-edit"></i> UPDATE</a>';
+                                        ?>
+
+                                        <tr>
+                                            <td><?php echo $employee['id']; ?></td>
+                                        
+                                            <td><?php echo $employee['first_name']; ?></td>
+
+                                            <td><?php echo $employee['last_name'];; ?></td>
+                                        
+                                            <td><?php echo $employee['email']; ?></td>
+                                        
+                                            <td><?php echo $employee['address']; ?></td>
+                                        
+                                            <td><?php echo $employee['mobile']; ?></td>
+
+                                            <td><?php echo $employee['hotel_no']; ?></td>
+
+                                            <td><?php echo $jobType; ?></td>
+
+                                            <td><?php echo $button; ?></td>
+                                        </tr>
+                                        <?php endforeach;?>
+                                        <?php endforeach;?>
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
               </div>
             </div>
           </div>
@@ -67,6 +144,13 @@
       <?php include "../dashboard_footer.php" ?>
     </div>
   </div>
+
+    <!-- Data Table -->
+    <script>
+              $(document).ready( function () {
+                          $('#table_id').DataTable();
+                      } );
+    </script>
   <!-- Argon Scripts -->
   <!-- Core -->
   <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
@@ -78,6 +162,10 @@
   <script src="../assets/vendor/clipboard/dist/clipboard.min.js"></script>
   <!-- Argon JS -->
   <script src="../assets/js/argon.js?v=1.2.0"></script>
+ <!-- Data Tables -->
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+  
+ <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
 </body>
 
 </html>

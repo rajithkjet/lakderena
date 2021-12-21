@@ -35,7 +35,7 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Add Employee</li>
+                  <li class="breadcrumb-item active" aria-current="page">Update Employee</li>
                 </ol>
               </nav>
             </div>
@@ -49,10 +49,45 @@
             <div class=" col ">
                 <div class="card">
                         <div class="card-header bg-transparent">
-                            <h3 class="mb-0">Add Employee</h3>
+                            <h3 class="mb-0">Update Employee</h3>
                         </div>
                     <div class="card-body">
-                        <div class="row icon-examples">        
+                        <div class="row icon-examples">
+                <?php 
+                if (isset($_GET['id'])){
+                  
+                   $employeeid = $_GET['id'];
+
+                    if ( is_numeric($employeeid) == true){
+                       require_once '../Database.php';
+                    try{
+
+                       $connect = new Database();
+                       $db = $connect->db();
+                       
+                        $employeeid = mysqli_real_escape_string($db, $_GET['id']);
+                        $query = "
+                        SELECT * FROM employees 
+                        WHERE id = '".$employeeid."'
+                        ";
+
+                        $result = mysqli_query($db, $query);
+                        if(mysqli_num_rows($result) > 0)
+                        {
+                    
+
+                        while($row = mysqli_fetch_array($result)){
+
+                              $id = $row['id'];
+                              $firstname=$row['first_name'];
+                              $lastname=$row['last_name'];
+                              $email=$row['email'];
+                              $address = $row['address'];
+                              $mobile = $row['mobile'];
+                              $job_role_id = $row['job_role_id'];
+                              $hotel_no = $row['hotel_no'];
+
+                             echo'
                             <div class="col-xl-8 order-xl-1">
                                     <div class="card">
                                             <div class="card-header">
@@ -66,7 +101,7 @@
                                                                         <div class="col-lg-12">
                                                                             <div class="form-group">
                                                                                 <label class="form-control-label" for="input-email">Email address</label>
-                                                                                <input name="email" type="email" id="input-email" class="form-control" placeholder="jesse@example.com">
+                                                                                <input name="email" type="email" id="input-email" class="form-control" value="'.$email.'">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -74,13 +109,13 @@
                                                                         <div class="col-lg-6">
                                                                             <div class="form-group">
                                                                                 <label class="form-control-label" for="input-first-name">First name</label>
-                                                                                <input name="fname" type="text" id="input-first-name" class="form-control" placeholder="First name" required="">
+                                                                                <input name="fname" type="text" id="input-first-name" class="form-control" value="'.$firstname.'" required="">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-lg-6">
                                                                             <div class="form-group">
                                                                                 <label class="form-control-label" for="input-last-name">Last name</label>
-                                                                                <input name="lname" type="text" id="input-last-name" class="form-control" placeholder="Last name" required="">
+                                                                                <input name="lname" type="text" id="input-last-name" class="form-control" value="'.$lastname.'" required="">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -94,7 +129,7 @@
                                                                         <div class="col-md-12">
                                                                         <div class="form-group">
                                                                             <label class="form-control-label" for="input-address">Address</label>
-                                                                            <input name="address" id="input-address" class="form-control" placeholder="Home Address" type="text" required="">
+                                                                            <input name="address" id="input-address" class="form-control" value="'.$address.'" type="text" required="">
                                                                         </div>
                                                                         </div>
                                                                     </div>
@@ -102,7 +137,7 @@
                                                                         <div class="col-lg-12">
                                                                             <div class="form-group">
                                                                                 <label class="form-control-label">Mobile</label>
-                                                                                <input name="mobile" type="text" id="phone" class="phone form-control" placeholder="077 123 4567" required="" >
+                                                                                <input name="mobile" type="text" id="phone" class="phone form-control" value="'.$mobile.'" required="" >
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -125,11 +160,17 @@
                                                                                             $list = mysqli_query($db,"SELECT * FROM `job_roles`");
                                                                                             while ($row = mysqli_fetch_assoc($list)) 
                                                                                             {
-                                                                                            echo' <option value="'.$row['id'].'">'.$row['name'].'</option>';
+                                                                                                if ($job_role_id == $row['id'] )
+                                                                                                    {
+                                                                                                        echo' <option value="'.$row['id'].'" selected>'.$row['name'].'</option>';
+                                                                                                    }else
+                                                                                                    {
+                                                                                                        echo' <option value="'.$row['id'].'">'.$row['name'].'</option>';
+                                                                                                    } 
                                                                                             }
                                                                                             $db = null;
                                                                                         ?>
-                                                                                    </select>
+                                                                                   <?php echo'</select>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -137,7 +178,7 @@
                                                                         <div class="col-lg-12">
                                                                             <div class="form-group">
                                                                                 <label class="form-control-label" for="input-address">Select Hotel</label>
-                                                                                    <select name="hotel" class="form-control">
+                                                                                    <select name="hotel" class="form-control">';?>
                                                                                     <!--select hotel -->
                                                                                         <?php
                                                                                             require_once '../Database.php';
@@ -146,10 +187,16 @@
                                                                                             $list = mysqli_query($db,"SELECT * FROM `hotel`");
                                                                                             while ($row = mysqli_fetch_assoc($list)) 
                                                                                             {
-                                                                                            echo' <option value="'.$row['code'].'">'.$row['name'].'</option>';
+                                                                                               if ($hotel_no == $row['id'] )
+                                                                                                    {
+                                                                                                        echo' <option value="'.$row['code'].'" selected>'.$row['name'].'</option>';
+                                                                                                    }else
+                                                                                                    {
+                                                                                                        echo' <option value="'.$row['code'].'">'.$row['name'].'</option>';
+                                                                                                    } 
                                                                                             } 
                                                                                         ?>
-                                                                                    </select>
+                                                                                   <?php echo' </select>
                                                                             </div>
                                                                         </div>
                                                                          <div class="col-lg-12">
@@ -161,7 +208,30 @@
                                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>';
+                     $db = null;
+                     }
+                  }else{
+
+                              echo '<center>Sorry No Employee Found!!</center>';
+                          }
+
+                           //Close the connection to the database.
+                              $db = null;
+                 }
+                 catch(Exception $e){
+                      http_response_code(500);
+                      die('Error establishing connection with database');
+                    }
+                   }else{
+                
+                    http_response_code(400);
+                    die('Error processing bad or malformed request');
+                   }
+                }
+            
+                ?>
+                
                 </div>
             </div>
         </div>
@@ -172,7 +242,7 @@
     </div>
   </div>
 
-<!---------------------------- Registration process ------------------------------>
+<!---------------------------- Update process ------------------------------>
 
 <?php
 
@@ -184,12 +254,12 @@ if (isset($_POST['submit']))
     $employee = new Employee(); 
 
     //check mail already exists
-    if ($employee->employeeEmailExists($_POST['email'])) 
+    if ($employee->checkEmailExists($_POST['email'], $employeeid)) 
     {
     
         //if exists, then redirect to index page with notification value
-        echo'<script>
-        location.replace("addEmployee.php?emailexists=true");
+        echo '<script>
+        location.replace("editEmployee.php?id='.$employeeid.'&emailexists=true");
         </script>';
 
     }else{
@@ -228,7 +298,7 @@ if (isset($_POST['submit']))
             $hotel_code = $hotel;
 
 
-            $employee->registerEmployee($firstName, $lastName, $email, $address, $mobile, $hotel_code, $job_role_id);
+            $employee->updateEmployee($firstName, $lastName, $email, $address, $mobile, $hotel_code, $job_role_id, $employeeid);
 
         }
 
@@ -236,7 +306,7 @@ if (isset($_POST['submit']))
 
 ?>
 
-<!--------------------- Registration process end ------------------------>
+<!--------------------- Update process end ------------------------>
 
       <!-- Sweet Alert -->
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -287,24 +357,24 @@ function validateForm() {
   <!-- ---------------Notifications--------------------------- -->
   <?php 
 
-if(isset($_GET['registration']))
+if(isset($_GET['success']))
           {
             echo'<script>
-                 swal("Employee Registration Success!", "New Employee Details added!", "success");
+                 swal("Employee Updated Success!", "Employee Details updated!", "success");
                 </script>';
              
           }
 if(isset($_GET['failed']))
           {
             echo'<script>
-                 swal("Employee Registration Failed!", "Something went wrong!", "error");
+                 swal("Employee Update Failed!", "Something went wrong!", "error");
                 </script>';
              
           }
 if(isset($_GET['emailexists']))
           {
             echo'<script>
-                 swal("Employee Registration Failed!", "Employee Email Already exists! Enter new email", "error");
+                 swal("Employee Update Failed!", "Employee Email Already exists! Enter new email", "error");
                 </script>';
              
           }

@@ -57,15 +57,15 @@
         }
 
        //check already created employee email exists function - use for update account
-        public function checkEmailExists($email, $user_id)
+        public function checkEmailExists($email, $emp_id)
         {   
             require_once '../Database.php';
             $conn = new Database();
             $db = $conn->db();
-            $query = $db->query("SELECT email FROM users WHERE email = '$email'");
+            $query = $db->query("SELECT email FROM employees WHERE email = '$email'");
             if($query->num_rows == 1)
             {
-               $query2 = $db->query("SELECT email FROM users WHERE email ='$email' AND id = '".$user_id."'");
+               $query2 = $db->query("SELECT email FROM employees WHERE email ='$email' AND id = '".$emp_id."'");
                if($query2->num_rows == 1)
                {
                    return FALSE;
@@ -80,6 +80,36 @@
             }
         }
         //end check employee email exists function
+
+         //employee update function
+        public function updateEmployee($firstName, $lastName, $email, $address, $mobile, $hotel_no, $job_role_id, $empid)
+        {
+             require_once '../Database.php';
+             $conn = new Database();
+             $db = $conn->db();
+            // prepare and bind
+           
+            $stmt = $db->prepare("UPDATE employees SET first_name = ?, last_name = ?, email = ?, address = ?, mobile = ?, hotel_no = ?, job_role_id = ? WHERE id='".$empid."'");
+            $stmt->bind_param("sssssss", $firstName, $lastName, $email, $address, $mobile, $hotel_no, $job_role_id);
+            
+            if($stmt->execute())
+            {
+                $stmt->close();
+
+
+                  echo'<script>
+                        location.replace("editEmployee.php?id='.$empid.'&success=true");
+                       </script>';
+              
+             }else{
+                    echo'<script>
+                        location.replace("editEmployee.php?id='.$empid.'&failed=true");
+                        </script>';
+
+                  }
+        
+
+        }
 
 
      
