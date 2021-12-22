@@ -111,6 +111,36 @@
 
         }
 
+        //update attendance function
+        public function updateAttendance($attendDate, $is_present_status, $duration, $hrid, $attendanceid)
+        {
+             require_once '../Database.php';
+             $conn = new Database();
+             $db = $conn->db();
+            // prepare and bind
+           
+            $stmt = $db->prepare("UPDATE attendance SET date = ?, is_present = ?, duration = ?, updated_by = ? WHERE id='".$attendanceid."'");
+            $stmt->bind_param("ssss", $attendDate, $is_present_status, $duration, $hrid);
+            
+            if($stmt->execute())
+            {
+                $stmt->close();
+
+
+                  echo'<script>
+                        location.replace("editAttendance.php?id='.$attendanceid.'&success=true");
+                       </script>';
+              
+             }else{
+                    echo'<script>
+                        location.replace("editAttendance.php?id='.$attendanceid.'&failed=true");
+                        </script>';
+
+                  }
+        
+
+        }
+
 
      
        
