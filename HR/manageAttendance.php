@@ -84,6 +84,7 @@
                                         $db = $connect->db();
                                         $current_date = new DateTime(null, new DateTimeZone('Asia/Colombo'));
                                         $current_date = $current_date->format("Y-m-d");
+                                        //get all employees
                                         $sql = "SELECT * FROM employees";
                                         $result = mysqli_query($db, $sql);
 
@@ -94,8 +95,10 @@
 
 
                                             <?php
+                                            //check attendance of the employee by current date
                                             $query = $db->query("SELECT * FROM attendance WHERE (`employee` = '".$employee['id']."') AND (`date` = '".$current_date."') ");
                                            
+                                            //if record not found, then display employee record to the table
                                             if($query->num_rows != 1)
                                             {
                                             
@@ -147,6 +150,7 @@
                             //present process
                             $(document).on('click', '.present', function(){  
                             var id = $(this).attr("id");
+                            var hrID = <?php echo $_SESSION['id']; ?>;
                                 
                                 swal({
                                     title: "Are you sure you want to mark as present this employee?",
@@ -161,15 +165,12 @@
                                             $.ajax({  
                                                 url:"markEmployee.php",  
                                                 method:"POST",  
-                                                data:{id:id, action:action},  
+                                                data:{id:id, action:action, hrID:hrID},  
                                                 success:function(data)  
-                                                {   
-                                                     swal({
-                                                                title: "Success",
-                                                                icon: "success",
-                                                                text: "Course successfully suspended",
-                                                            });
-                                                }  
+                                                    {   
+                                                    location.replace("manageAttendance.php?success=true");
+                                                        
+                                                    } 
                                             });
 
                                     } 
@@ -180,6 +181,7 @@
                             //absent process
                             $(document).on('click', '.absent', function(){  
                             var id = $(this).attr("id");
+                            var hrID = <?php echo $_SESSION['id']; ?>;
                                 
                                 swal({
                                     title: "Are you sure you want to mark as absent this employee?",
@@ -194,14 +196,10 @@
                                             $.ajax({  
                                                 url:"markEmployee.php",  
                                                 method:"POST",  
-                                                data:{id:id, action:action},  
+                                                data:{id:id, action:action, hrID:hrID},  
                                                 success:function(data)  
                                                 {   
-                                                    swal({
-                                                                title: "Success",
-                                                                icon: "success",
-                                                                text: "Attendance marked as absent successfully",
-                                                            });
+                                                   location.replace("manageAttendance.php?success=true");
                                                     
                                                 }  
                                             });
@@ -213,6 +211,7 @@
 
                       });
     </script>
+
 
     <script>
         $(document).ready( function () {
