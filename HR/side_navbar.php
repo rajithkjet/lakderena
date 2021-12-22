@@ -24,13 +24,13 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="manageEmployee.php">
                 <i class="fas fa-users text-green"></i>
                 <span class="nav-link-text">Manage Employee Details</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="manageAttendance.php">
                 <i class="fas fa-briefcase text-pink"></i>
                 <span class="nav-link-text">Manage Employee Attendance</span>
               </a>
