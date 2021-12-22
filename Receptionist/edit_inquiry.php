@@ -216,7 +216,7 @@
                       while ($row = mysqli_fetch_assoc($list)) {
                       if ($room_type_id == $row['id'] ) {
                         echo' <option value="'.$row['id'].'" selected>'.$row['name'].'</option>';
-                      }else{
+                      }
                      echo' <option value="'.$row['id'].'">'.$row['name'].'</option>';
                        } ?>
                         
