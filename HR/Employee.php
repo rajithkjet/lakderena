@@ -36,6 +36,32 @@
             }
         }
 
+          //add employee Leave function
+        public function addLeave($employeeid, $fromDate, $toDate, $total_days, $reason, $hrid)
+        {
+            require_once '../Database.php';
+            $conn = new Database();
+            $db = $conn->db();
+            // prepare and bind
+            $stmt = $db->prepare("INSERT INTO leaves (employee, date_from, date_to, total_days, reason, updated_by) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssss", $employeeid, $fromDate, $toDate, $total_days, $reason, $hrid);
+            
+            if($stmt->execute())
+            { 
+                $stmt->close();
+
+                     echo'<script>
+                     location.replace("addLeave.php?id='.$employeeid.'&success=true");
+                     </script>';
+                         
+            }else
+            {
+                echo'<script>
+                location.replace("addLeave.php?id='.$employeeid.'&failed=true");
+                 </script>';
+            }
+        }
+
 
 
 

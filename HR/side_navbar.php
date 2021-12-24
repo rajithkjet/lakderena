@@ -36,7 +36,7 @@
               </a>
             </li>
              <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="manageLeaves.php">
                 <i class="fas fa-walking text-orange"></i>
                 <span class="nav-link-text">Manage Employee Leaves</span>
               </a>
@@ -55,13 +55,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
-                <i class="fas fa-briefcase text-pink"></i>
-                <span class="nav-link-text">Employee Attendance</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="fas fa-money-check-alt text-orange"></i>
+                <i class="fas fa-money-check-alt text-pink"></i>
                 <span class="nav-link-text">Payroll Reports</span>
               </a>
             </li>
