@@ -55,7 +55,7 @@
               <div class="row icon-examples">
                 <div class="col-xl-4 order-xl-1">
                     <div class="card">
-                        <a href="addEmployee.php" style="color: white" type="button" class="btn btn-success"><i class="fas fa-user-plus"></i> Check Leaves</a>
+                        <a href="checkLeaves.php" style="color: white" type="button" class="btn btn-success"><i class="fas fa-file"></i> Check Leaves</a>
                     </div>
                 </div>
                 <div class="col-xl-12 order-xl-1">
