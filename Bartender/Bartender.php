@@ -131,6 +131,62 @@
         }
 
         //end hashing password
+
+        //add item function
+        public function addItem($name, $price, $size, $stock)
+        {
+            require_once '../Database.php';
+            $conn = new Database();
+            $db = $conn->db();
+            // prepare and bind
+            $stmt = $db->prepare("INSERT INTO liquor_items (name, price, size, stock) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("ssss", $name, $price, $size, $stock);
+            
+            if($stmt->execute())
+            { 
+                $stmt->close();
+
+                     echo'<script>
+                     location.replace("addItem.php?success=true");
+                     </script>';
+                         
+            }else
+            {
+                echo'<script>
+                location.replace("addLeave.php?failed=true");
+                 </script>';
+            }
+        }
+
+        //Item update function
+        public function updateItem($name, $price, $size, $stock, $itemid)
+        {
+             require_once '../Database.php';
+             $conn = new Database();
+             $db = $conn->db();
+            // prepare and bind
+           
+            $stmt = $db->prepare("UPDATE liquor_items SET name = ?, price = ?, size = ?, stock = ? WHERE id='".$itemid."'");
+            $stmt->bind_param("ssss", $name, $price, $size, $stock);
+            
+            if($stmt->execute())
+            {
+                $stmt->close();
+
+
+                  echo'<script>
+                        location.replace("editItem.php?id='.$itemid.'&success=true");
+                       </script>';
+              
+             }else{
+                    echo'<script>
+                        location.replace("editItem.php?id='.$itemid.'&failed=true");
+                        </script>';
+
+                  }
+        
+
+        }
      
        
     

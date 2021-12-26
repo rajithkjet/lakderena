@@ -24,7 +24,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="manageLiquor.php">
                 <i class="fas fa-glass-martini-alt text-green"></i>
                 <span class="nav-link-text">Manage Liquor Details</span>
               </a>
