@@ -102,7 +102,7 @@
                                         
                                             <td data-target="name"><?php echo $item['name']; ?></td>
 
-                                            <td data-target="price"><?php echo $item['price'];; ?></td>
+                                            <td data-target="price"><?php echo $item['price']; ?></td>
                                         
                                             <td><?php echo $item['size']; ?></td>
                                         
