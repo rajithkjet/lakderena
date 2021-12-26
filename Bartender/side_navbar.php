@@ -30,7 +30,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="soldItems.php">
                 <i class="fas fa-glass-cheers text-pink"></i>
                 <span class="nav-link-text">Sold Liquor Items</span>
               </a>
