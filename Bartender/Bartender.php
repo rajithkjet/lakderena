@@ -187,6 +187,62 @@
         
 
         }
+
+        //add expenditure function
+        public function addExpenditure($bar, $current_date, $amount, $name, $qty, $total, $bartenderid)
+        {
+            require_once '../Database.php';
+            $conn = new Database();
+            $db = $conn->db();
+            // prepare and bind
+            $stmt = $db->prepare("INSERT INTO bar_expenditure (bar_id, date, amount, item, qty, total, updated_by) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssss", $bar, $current_date, $amount, $name, $qty, $total, $bartenderid);
+            
+            if($stmt->execute())
+            { 
+                $stmt->close();
+
+                     echo'<script>
+                     location.replace("addExpenditure.php?success=true");
+                     </script>';
+                         
+            }else
+            {
+                echo'<script>
+                location.replace("addExpenditure.php?failed=true");
+                 </script>';
+            }
+        }
+
+        //Expenditure update function
+        public function updateExpenditure($bar, $current_date, $amount, $name, $qty, $total, $bartenderid, $exid)
+        {
+             require_once '../Database.php';
+             $conn = new Database();
+             $db = $conn->db();
+            // prepare and bind
+           
+            $stmt = $db->prepare("UPDATE bar_expenditure SET bar_id = ?, date = ?, amount = ?, item = ?, qty = ?, total = ?, updated_by = ?   WHERE id='".$exid."'");
+            $stmt->bind_param("sssssss", $bar, $current_date, $amount, $name, $qty, $total, $bartenderid);
+            
+            if($stmt->execute())
+            {
+                $stmt->close();
+
+
+                  echo'<script>
+                        location.replace("editExpenditure.php?id='.$exid.'&success=true");
+                       </script>';
+              
+             }else{
+                    echo'<script>
+                        location.replace("editExpenditure.php?id='.$exid.'&failed=true");
+                        </script>';
+
+                  }
+        
+
+        }
      
        
     

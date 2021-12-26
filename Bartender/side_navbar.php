@@ -42,7 +42,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="manageExpenditure.php">
                 <i class="fas fa-dollar-sign text-blue"></i>
                 <span class="nav-link-text">Expenditure Details</span>
               </a>
