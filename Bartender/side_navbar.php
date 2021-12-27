@@ -24,27 +24,27 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="manageLiquor.php">
                 <i class="fas fa-glass-martini-alt text-green"></i>
                 <span class="nav-link-text">Manage Liquor Details</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="soldItems.php">
                 <i class="fas fa-glass-cheers text-pink"></i>
-                <span class="nav-link-text">Sold Liquor Items</span>
+                <span class="nav-link-text">Manage Sold Items</span>
               </a>
             </li>
              <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="dailySales.php">
                 <i class="fas fa-piggy-bank text-orange"></i>
-                <span class="nav-link-text">Calculate Daily Sales</span>
+                <span class="nav-link-text">Daily Sales</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="manageExpenditure.php">
                 <i class="fas fa-dollar-sign text-blue"></i>
-                <span class="nav-link-text">Input Expenditure Details</span>
+                <span class="nav-link-text">Expenditure Details</span>
               </a>
             </li>
             <li class="nav-item">
