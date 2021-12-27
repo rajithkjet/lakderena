@@ -234,5 +234,30 @@
             // of specified length
             return substr(str_shuffle($str_result), 0, $length_of_string);
         }
+
+        //update hotel
+        public function checkHotelCodeExists($code, $hotel_id)
+        {
+            require_once '../Database.php';
+            $conn = new Database();
+            $db = $conn->db();
+            $query = $db->query("SELECT code FROM hotel WHERE code = '$code'");
+            die($query->num_rows);
+            if($query->num_rows == 1)
+            {
+               $query2 = $db->query("SELECT code FROM hotel WHERE code ='$code' AND id = '".$hotel_id."'");
+               if($query2->num_rows == 1)
+               {
+                   return FALSE;
+
+               }else{
+                    return TRUE;
+               }
+
+            }else{
+
+                return FALSE;
+            }
+        }
     }
 ?>

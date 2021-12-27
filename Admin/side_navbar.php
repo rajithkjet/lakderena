@@ -29,14 +29,8 @@
                 <span class="nav-link-text">Users</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="roles.php">
-                <i class="ni ni-badge text-pink"></i>
-                <span class="nav-link-text">Roles</span>
-              </a>
-            </li>
              <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="hotels.php">
                 <i class="fas fa-hotel text-orange"></i>
                 <span class="nav-link-text">Hotels</span>
               </a>

@@ -33,7 +33,7 @@
                                     <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                                         <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Roles</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Hotels</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -48,24 +48,22 @@
                     <div class=" col ">
                         <div class="card">
                             <div class="card-header bg-transparent">
-                                <h3 class="mb-0">New Role</h3>
+                                <h3 class="mb-0">New Hotel</h3>
                             </div>
                             <div class="card-body">
                                 <div class="col-lg-12">
-                                    <a href="new_role.php" type="button" class="btn btn-warning"><i class="fas fa-user-plus"></i> Add New Role</a>
+                                    <a href="new_hotel.php" type="button" class="btn btn-warning"><i class="fas fa-plus"></i> Add New Hotel</a>
                                 </div><br>
                                 <div class="col-lg-12">
                                     <div class="table-responsive">
-                                        <table id="users_table" class="display table align-items-center">
+                                        <table id="hotels_table" class="display table align-items-center">
                                             <thead class="thead-light">
                                                 <tr>
                                                     <th scope="col" class="sort">ID</th>
-                                                    <th scope="col" class="sort">First Name</th>
-                                                    <th scope="col" class="sort">Last Name</th>
-                                                    <th scope="col" class="sort">Email</th>
-                                                    <th scope="col" class="sort">Username</th>
-                                                    <th scope="col" class="sort">Hotel No.</th>
-                                                    <th scope="col" class="sort">Active</th>
+                                                    <th scope="col" class="sort">Name</th>
+                                                    <th scope="col" class="sort">Code</th>
+                                                    <th scope="col" class="sort">Address</th>
+                                                    <th scope="col" class="sort">Phone</th>
                                                     <th scope="col" class="sort">Action</th>
                                                 </tr>
                                             </thead>
@@ -74,23 +72,23 @@
                                                     require_once '../Database.php';
                                                     $connect = new Database();
                                                     $db = $connect->db();
-                                                    $sql = "SELECT * FROM users";
+                                                    $sql = "SELECT * FROM hotel";
                                                     $result = mysqli_query($db, $sql);
-                                                    $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                                                    $hotels = mysqli_fetch_all($result, MYSQLI_ASSOC);
                                                 ?>
-                                                <?php foreach ($users as $user): ?>
+                                                <?php foreach ($hotels as $hotel): ?>
                                                 <?php
-                                                    $userid = $user['id'];
-                                                    $button = '<a href="edit_user.php?id='.$userid.'" type="button" class="btn btn-warning btn-sm"><i class="fas fa-user-edit"></i> UPDATE</a>';
+                                                    $hotelid = $hotel['id'];
+                                                    $button = '<a href="edit_hotel.php?id='.$hotelid.'" type="button" class="btn btn-warning btn-sm"><i class="fas fa-marker"></i> UPDATE</a>';
+                                                    $button .= '<a href="edit_hotel.php?id='.$hotelid.'" type="button" class="btn btn-warning btn-sm"><i class="fas fa-trash-alt"></i> DELETE</a>';
+
                                                 ?>
                                                 <tr>
-                                                    <td><?php echo $user['id']; ?></td>
-                                                    <td><?php echo $user['first_name']; ?></td>
-                                                    <td><?php echo $user['last_name']; ?></td>
-                                                    <td><?php echo $user['email']; ?></td>
-                                                    <td><?php echo $user['username']; ?></td>
-                                                    <td><?php echo $user['hotel_no']; ?></td>
-                                                    <td><?php echo ($user['is_active'] == 1 ? '<span style="background-color:green; color:white; padding: 5px;">Yes</span>' : '<span style="background-color:red; color:white; padding: 5px;">No</span>'); ?></td>
+                                                    <td><?php echo $hotel['id']; ?></td>
+                                                    <td><?php echo $hotel['name']; ?></td>
+                                                    <td><?php echo $hotel['code']; ?></td>
+                                                    <td><?php echo $hotel['address']; ?></td>
+                                                    <td><?php echo $hotel['phone']; ?></td>
                                                     <td><?php echo $button; ?></td>
                                                 </tr>
                                                 <?php endforeach;?>
@@ -104,7 +102,7 @@
                 </div>
                 <script>
                     $(document).ready( function () {
-                        $('#users_table').DataTable();
+                        $('#hotels_table').DataTable();
                     });
                 </script>
                 <!-- Footer -->
