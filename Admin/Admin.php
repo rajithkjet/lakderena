@@ -235,7 +235,7 @@
             return substr(str_shuffle($str_result), 0, $length_of_string);
         }
 
-        //update hotel
+        //check unique hotel code
         public function checkHotelCodeExists($code, $hotel_id)
         {
             require_once '../Database.php';
@@ -257,6 +257,31 @@
             }else{
 
                 return FALSE;
+            }
+        }
+
+        //hotel update update function
+        public function updateHotel($name, $code, $address, $phone, $hotel_id)
+        {
+            require_once '../Database.php';
+            $conn = new Database();
+            $db = $conn->db();
+
+            //update hotel table
+            $stmt = $db->prepare("UPDATE hotel SET name = ?, code = ?, address = ?, phone = ? WHERE id='".$hotel_id."'");
+            $stmt->bind_param("ssss", $name, $code, $address, $phone);
+        
+            if($stmt->execute())
+            {
+                $stmt->close();
+
+                echo'<script>
+                        location.replace("edit_hotel.php?id='.$hotel_id.'&success=true");
+                    </script>';
+            }else{
+                echo'<script>
+                        location.replace("edit_hotel.php?id='.$hotel_id.'&failed=true");
+                    </script>';
             }
         }
     }

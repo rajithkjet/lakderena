@@ -168,44 +168,16 @@
                             location.replace("edit_hotel.php?id='.$hotel_id.'&hotelcodeexists=true");
                         </script>';
                     }else{
-                        $firstName = $_POST['fname'];
-                        $firstName= ucwords(strtolower($firstName));
+                        
+                        $name = $_POST['name'];
 
-                        $lastName = $_POST['lname'];
-                        $lastName= ucwords(strtolower($lastName));
+                        $code = $_POST['code'];
 
-                        $username = $_POST['username'];
+                        $address = $_POST['address'];
 
-                        $email = $_POST['email'];
+                        $phone = $_POST['phone'];
 
-                        $userhotelno = filter_input(INPUT_POST, 'hotel', FILTER_SANITIZE_STRING);
-
-                        $userroleid = filter_input(INPUT_POST, 'role', FILTER_SANITIZE_STRING);
-
-                        $firstName = stripslashes($firstName);
-                        $firstName = addslashes($firstName);
-                        $firstName = ucwords(strtolower($firstName));
-
-                        $lastName = stripslashes($lastName);
-                        $lastName = addslashes($lastName);
-                        $lastName = ucwords(strtolower($lastName));
-
-                        $email = stripslashes($email);
-                        $email = addslashes($email);
-
-                        $hotel = $userhotelno;
-
-                        $role = $userroleid;
-
-                        $is_active = $_POST['useractivestatus'];
-
-                        if ($is_active == "on") {
-                            $active_status = 1;
-                        }else {
-                            $active_status = 0;
-                        }
-
-                        $admin->updateUser($firstName, $lastName, $email, $username, $hotel, $role, $user_id, $active_status);
+                        $admin->updateHotel($name, $code, $address, $phone, $hotel_id);
                     }
                 }
             ?>
