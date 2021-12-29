@@ -36,17 +36,17 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="rooms.php">
                 <i class="fas fa-warehouse text-primary"></i>
                 <span class="nav-link-text">Rooms</span>
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="#">
                 <i class="ni ni-single-copy-04 text-blue"></i>
                 <span class="nav-link-text">Generate Reports</span>
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="settings.php">
                 <i class="ni ni-settings text-orange"></i>

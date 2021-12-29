@@ -242,7 +242,6 @@
             $conn = new Database();
             $db = $conn->db();
             $query = $db->query("SELECT code FROM hotel WHERE code = '$code'");
-            die($query->num_rows);
             if($query->num_rows == 1)
             {
                $query2 = $db->query("SELECT code FROM hotel WHERE code ='$code' AND id = '".$hotel_id."'");

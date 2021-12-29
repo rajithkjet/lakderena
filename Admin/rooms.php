@@ -33,7 +33,7 @@
                                     <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                                         <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Hotels</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Rooms</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -48,22 +48,23 @@
                     <div class=" col ">
                         <div class="card">
                             <div class="card-header bg-transparent">
-                                <h3 class="mb-0">New Hotel</h3>
+                                <h3 class="mb-0">New Room</h3>
                             </div>
                             <div class="card-body">
                                 <div class="col-lg-12">
-                                    <a href="new_hotel.php" type="button" class="btn btn-warning"><i class="fas fa-plus"></i> Add New Hotel</a>
+                                    <a href="new_room.php" type="button" class="btn btn-warning"><i class="fas fa-plus"></i> Add New Room</a>
                                 </div><br>
                                 <div class="col-lg-12">
                                     <div class="table-responsive">
-                                        <table id="hotels_table" class="display table align-items-center">
+                                        <table id="rooms_table" class="display table align-items-center">
                                             <thead class="thead-light">
                                                 <tr>
                                                     <th scope="col" class="sort">ID</th>
-                                                    <th scope="col" class="sort">Name</th>
-                                                    <th scope="col" class="sort">Code</th>
-                                                    <th scope="col" class="sort">Address</th>
-                                                    <th scope="col" class="sort">Phone</th>
+                                                    <th scope="col" class="sort">Hotel</th>
+                                                    <th scope="col" class="sort">Room No.</th>
+                                                    <th scope="col" class="sort">Room Type</th>
+                                                    <th scope="col" class="sort">AC</th>
+                                                    <th scope="col" class="sort">Room Availability</th>
                                                     <th scope="col" class="sort">Action</th>
                                                 </tr>
                                             </thead>
@@ -72,23 +73,28 @@
                                                     require_once '../Database.php';
                                                     $connect = new Database();
                                                     $db = $connect->db();
-                                                    $sql = "SELECT * FROM hotel";
+                                                    $sql = "SELECT room.*,hotel.name AS hotel,room_types.name AS room_type
+                                                            FROM room
+                                                            INNER JOIN hotel ON room.hotel_code = hotel.code
+                                                            INNER JOIN room_types ON room.room_type_id = room_types.id
+                                                            ";
                                                     $result = mysqli_query($db, $sql);
-                                                    $hotels = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                                                    $rooms = mysqli_fetch_all($result, MYSQLI_ASSOC);
                                                 ?>
-                                                <?php foreach ($hotels as $hotel): ?>
+                                                <?php foreach ($rooms as $room): ?>
                                                 <?php
-                                                    $hotelid = $hotel['id'];
-                                                    $button = '<a href="edit_hotel.php?id='.$hotelid.'" type="button" class="btn btn-warning btn-sm"><i class="fas fa-marker"></i> UPDATE</a>';
-                                                    $button .= '<a href="#" id="delete-hotel" data-id="'.$hotelid.'" type="button" class="btn btn-warning btn-sm"><i class="fas fa-trash-alt"></i> DELETE</a>';
+                                                    $roomid = $room['id'];
+                                                    $button = '<a href="edit_room.php?id='.$roomid.'" type="button" class="btn btn-warning btn-sm"><i class="fas fa-marker"></i> UPDATE</a>';
+                                                    $button .= '<a href="#" id="delete-room" data-id="'.$roomid.'" type="button" class="btn btn-warning btn-sm"><i class="fas fa-trash-alt"></i> DELETE</a>';
 
                                                 ?>
                                                 <tr>
-                                                    <td><?php echo $hotel['id']; ?></td>
-                                                    <td><?php echo $hotel['name']; ?></td>
-                                                    <td><?php echo $hotel['code']; ?></td>
-                                                    <td><?php echo $hotel['address']; ?></td>
-                                                    <td><?php echo $hotel['phone']; ?></td>
+                                                    <td><?php echo $room['id']; ?></td>
+                                                    <td><?php echo $room['hotel']; ?></td>
+                                                    <td><?php echo $room['room_no']; ?></td>
+                                                    <td><?php echo $room['room_type']; ?></td>
+                                                    <td><?php echo ($room['is_ac'] == 1 ? '<span style="background-color:green; color:white; padding: 5px;">Yes</span>' : '<span style="background-color:red; color:white; padding: 5px;">No</span>'); ?></td>
+                                                    <td><?php echo ($room['status'] == 1 ? '<span style="background-color:green; color:white; padding: 5px;">Available</span>' : '<span style="background-color:red; color:white; padding: 5px;">Not Available</span>'); ?></td>
                                                     <td><?php echo $button; ?></td>
                                                 </tr>
                                                 <?php endforeach;?>
@@ -102,16 +108,16 @@
                 </div>
                 <script>
                     $(document).ready( function () {
-                        $('#hotels_table').DataTable();
+                        $('#rooms_table').DataTable();
                     });
 
-                    $("#delete-hotel").click(function(e) {
-                        var elem = document.getElementById('delete-hotel');
+                    $("#delete-room").click(function(e) {
+                        var elem = document.getElementById('delete-room');
                         var id = elem.getAttribute('data-id');
                         e.preventDefault();
                         $.ajax({
                             type: "POST",
-                            url: "delete_hotel.php",
+                            url: "delete_room.php",
                             data: { 
                                 id: id
                             },
