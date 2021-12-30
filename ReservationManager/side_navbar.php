@@ -24,17 +24,17 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="search_rooms.php">
                 <i class="fas fa-search text-green"></i>
                 <span class="nav-link-text">Search Room Availability</span>
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="#">
                 <i class="fas fa-user-plus text-pink"></i>
                 <span class="nav-link-text">Register Customers to Rooms</span>
               </a>
-            </li>
+            </li> -->
              <li class="nav-item">
               <a class="nav-link" href="#">
                 <i class="fas fa-pencil-alt text-orange"></i>
