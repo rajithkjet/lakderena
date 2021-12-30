@@ -26,7 +26,7 @@
          $conn = new Database();
          $db = $conn->db();
         
-        require_once 'vendor/autoload.php';
+        require_once '../../vendor/autoload.php';
         
         $from = $_POST['fromDate'];
         $to = $_POST['toDate'];
