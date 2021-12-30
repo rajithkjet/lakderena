@@ -24,25 +24,25 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="hotelIncomeReport.php">
                 <i class="fas fa-hotel text-green"></i>
                 <span class="nav-link-text">Hotel Income Report</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="barIncomeReport.php">
                 <i class="fas fa-cocktail text-pink"></i>
                 <span class="nav-link-text">Bar Income Report</span>
               </a>
             </li>
              <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="hotelExpenditureReport.php">
                 <i class="fas fa-hotel text-orange"></i>
                 <span class="nav-link-text">Hotel Expenditure Report</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="barExpenditureReport.php">
                 <i class="fas fa-cocktail text-blue"></i>
                 <span class="nav-link-text">Bar Expenditure Report</span>
               </a>
