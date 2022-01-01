@@ -29,7 +29,7 @@
 							    </tr>';
 		                        while($row = mysqli_fetch_array($result))
 		                        {
-                                    $roomid = $row["id"];
+                                    $roomno = $row["room_no"];
                                     $AC = $row["is_ac"] == 1 ? 'Yes' : 'No';
 			                        $output .= '<tr>
 					                                <td>'.$row["id"].'</td>
@@ -37,7 +37,7 @@
 					                                <td>'.$row["room_no"].'</td>
 					                                <td>'.$row["room_type"].'</td>
                                                     <td>'.$AC.'</td>
-                                                    <td><a href="register_room_customer.php?room='.$roomid.'" type="button" style="color:white" class="btn btn-warning btn-sm">REGISTER CUSTOMER</a></td>
+                                                    <td><a href="register_room_customer.php?room='.$roomno.'" type="button" style="color:white" class="btn btn-warning btn-sm">REGISTER CUSTOMER</a></td>
 				                                </tr>
 			                        ';
 		                        }
